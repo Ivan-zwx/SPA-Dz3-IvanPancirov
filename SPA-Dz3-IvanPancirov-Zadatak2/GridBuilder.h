@@ -34,7 +34,7 @@ void alterGrid(grid& myGrid, const point& A, const point& B, const points walls)
 
     for (unsigned int i = 0; i < walls.size(); i++)
     {
-        myGrid[walls.at(i).first - 1][walls.at(i).second - 1] = '*';
+        myGrid[walls.at(i).first][walls.at(i).second] = '*'; //-1, -1
     }
 }
 

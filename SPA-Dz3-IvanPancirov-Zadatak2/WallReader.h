@@ -25,8 +25,8 @@ bool wallRead(string filepath, points& walls)
         {
             dataVec.push_back(temp2);
         }
-        int x = stoi(dataVec.at(0));
-        int y = stoi(dataVec.at(1));
+        int x = stoi(dataVec.at(0)); //-1
+        int y = stoi(dataVec.at(1)); //-1
         walls.push_back(point(x,y));
     }
 

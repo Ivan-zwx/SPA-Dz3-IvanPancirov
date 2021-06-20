@@ -21,11 +21,14 @@ bool isPointAtTheWall(point p, points w)
 {
 	for (unsigned int i = 0; i < w.size(); i++)
 	{
+		//cout << "p: " << p.first << " " << p.second << endl;
+		//cout << "w: " << w.at(i).first << " " << w.at(i).second << endl;
 		if ((p.first == w.at(i).first) && (p.second == w.at(i).second))
 		{
 			return true;
 		}
 	}
+	//cout << endl;
 	return false;
 }
 
@@ -41,6 +44,13 @@ points calculatePath(const grid& myGrid, const point& A, const point& B, const p
 
 	while (true)
 	{
+		cout << "xcurr: " << xCurrent << endl;
+		cout << "ycurr: " << yCurrent << endl;
+		if (xCurrent == xDestination && yCurrent == yDestination)
+		{
+			break;
+		}
+
 		if (xCurrent < xDestination)
 		{
 			if (validX(xCurrent + 1) && !isPointAtTheWall(point(xCurrent +1, yCurrent), walls))
@@ -49,49 +59,43 @@ points calculatePath(const grid& myGrid, const point& A, const point& B, const p
 				currentPoint.first = xCurrent;
 				currentPoint.second = yCurrent;
 				path.push_back(currentPoint);
+				continue;
 			}
 		}
 		else if (xCurrent > xDestination)
 		{
-			if (validX(xCurrent - 1))
+			if (validX(xCurrent - 1) && !isPointAtTheWall(point(xCurrent -1, yCurrent), walls))
 			{
 				xCurrent -= 1;
 				currentPoint.first = xCurrent;
 				currentPoint.second = yCurrent;
 				path.push_back(currentPoint);
+				continue;
 			}
 		}
-		else if (xCurrent == xDestination)
-		{
-			break;
-		}
-	}
 
-	while (true)
-	{
+	// micem drugi while
 		if (yCurrent < yDestination)
 		{
-			if (validY(yCurrent + 1))
+			if (validY(yCurrent + 1) && !isPointAtTheWall(point(xCurrent, yCurrent + 1), walls))
 			{
 				yCurrent += 1;
 				currentPoint.first = xCurrent;
 				currentPoint.second = yCurrent;
 				path.push_back(currentPoint);
+				continue;
 			}
 		}
 		else if (yCurrent > yDestination)
 		{
-			if (validY(yCurrent - 1))
+			if (validY(yCurrent - 1) && !isPointAtTheWall(point(xCurrent, yCurrent - 1), walls))
 			{
 				yCurrent -= 1;
 				currentPoint.first = xCurrent;
 				currentPoint.second = yCurrent;
 				path.push_back(currentPoint);
+				continue;
 			}
-		}
-		if (yCurrent == yDestination)
-		{
-			break;
 		}
 	}
 
