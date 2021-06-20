@@ -44,8 +44,8 @@ points calculatePath(const grid& myGrid, const point& A, const point& B, const p
 
 	while (true)
 	{
-		cout << "xcurr: " << xCurrent << endl;
-		cout << "ycurr: " << yCurrent << endl;
+		//cout << "xcurr: " << xCurrent << endl;
+		//cout << "ycurr: " << yCurrent << endl;
 		if (xCurrent == xDestination && yCurrent == yDestination)
 		{
 			break;
