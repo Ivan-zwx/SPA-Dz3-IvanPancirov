@@ -31,6 +31,17 @@ bool isPointAtTheWall(point p, points w)
 	//cout << endl;
 	return false;
 }
+bool isVisited(point p, points vis)
+{
+	for (unsigned int i = 0; i < vis.size(); i++)
+	{
+		if ((p.first == vis.at(i).first) && (p.second == vis.at(i).second))
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
 // while petlja nikada nece producirati invalidne tocke, B ne moze ujedno biti ispod A i invalid (bez zida)
 points calculatePath(const grid& myGrid, const point& A, const point& B, const points& walls)
@@ -41,9 +52,12 @@ points calculatePath(const grid& myGrid, const point& A, const point& B, const p
 	int yCurrent = A.second - 1;
 	int xDestination = B.first - 1;
 	int yDestination = B.second - 1;
+	points visited;
+	int loopCount = 0;
 
-	while (true)
+	while (loopCount < 800)
 	{
+		loopCount += 1;
 		//cout << "xcurr: " << xCurrent << endl;
 		//cout << "ycurr: " << yCurrent << endl;
 		if (xCurrent == xDestination && yCurrent == yDestination)
@@ -53,23 +67,25 @@ points calculatePath(const grid& myGrid, const point& A, const point& B, const p
 
 		if (xCurrent < xDestination)
 		{
-			if (validX(xCurrent + 1) && !isPointAtTheWall(point(xCurrent +1, yCurrent), walls))
+			if (validX(xCurrent + 1) && !isPointAtTheWall(point(xCurrent +1, yCurrent), walls) && !isVisited(point(xCurrent + 1, yCurrent), visited))
 			{
 				xCurrent += 1;
 				currentPoint.first = xCurrent;
 				currentPoint.second = yCurrent;
 				path.push_back(currentPoint);
+				visited.push_back(currentPoint);
 				continue;
 			}
 		}
 		else if (xCurrent > xDestination)
 		{
-			if (validX(xCurrent - 1) && !isPointAtTheWall(point(xCurrent -1, yCurrent), walls))
+			if (validX(xCurrent - 1) && !isPointAtTheWall(point(xCurrent -1, yCurrent), walls) && !isVisited(point(xCurrent - 1, yCurrent), visited))
 			{
 				xCurrent -= 1;
 				currentPoint.first = xCurrent;
 				currentPoint.second = yCurrent;
 				path.push_back(currentPoint);
+				visited.push_back(currentPoint);
 				continue;
 			}
 		}
@@ -77,23 +93,25 @@ points calculatePath(const grid& myGrid, const point& A, const point& B, const p
 	// micem drugi while
 		if (yCurrent < yDestination)
 		{
-			if (validY(yCurrent + 1) && !isPointAtTheWall(point(xCurrent, yCurrent + 1), walls))
+			if (validY(yCurrent + 1) && !isPointAtTheWall(point(xCurrent, yCurrent + 1), walls) && !isVisited(point(xCurrent, yCurrent + 1), visited))
 			{
 				yCurrent += 1;
 				currentPoint.first = xCurrent;
 				currentPoint.second = yCurrent;
 				path.push_back(currentPoint);
+				visited.push_back(currentPoint);
 				continue;
 			}
 		}
 		else if (yCurrent > yDestination)
 		{
-			if (validY(yCurrent - 1) && !isPointAtTheWall(point(xCurrent, yCurrent - 1), walls))
+			if (validY(yCurrent - 1) && !isPointAtTheWall(point(xCurrent, yCurrent - 1), walls) && !isVisited(point(xCurrent, yCurrent - 1), visited))
 			{
 				yCurrent -= 1;
 				currentPoint.first = xCurrent;
 				currentPoint.second = yCurrent;
 				path.push_back(currentPoint);
+				visited.push_back(currentPoint);
 				continue;
 			}
 		}

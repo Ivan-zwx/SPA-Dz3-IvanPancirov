@@ -10,6 +10,8 @@
 
 using namespace std;
 
+// TOCKE ZIDA SU PISANE U FORMATU (x,y) U RASPONU 0 <= x <= 19 I 0 <= y <= 39
+
 bool wallRead(string filepath, points& walls)
 {
     ifstream file(filepath);

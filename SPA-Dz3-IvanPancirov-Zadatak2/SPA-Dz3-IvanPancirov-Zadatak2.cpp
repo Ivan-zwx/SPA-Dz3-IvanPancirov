@@ -30,6 +30,9 @@ int main()
     points path = calculatePath(myGrid, pointA, pointB, walls);
     //printPoints(path);
 
+    //druga verzija algoritma, izbacena iz rjesenja:
+    //points path = seekPath(myGrid, pointA, pointB, walls);
+
     renderGrid(myGrid, path);
 
     return 0;

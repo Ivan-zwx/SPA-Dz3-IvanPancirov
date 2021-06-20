@@ -39,13 +39,24 @@ bool userInput(point& pointA, point& pointB, points& walls)
     string pointBStr;
 
     cout << "Unesite pocetnu i zavrsnu tocku (u formatu x,y) u rasponu koordinata 20,40" << endl; //1<=x<=20 i 1<=y<=40
+    cout << "Stisnite enter za defaultne vrijednosti tocke" << endl;
     cout << endl;
     cout << "Tocka A: ";
-    cin >> pointAStr;
+    //cin >> pointAStr;
+    getline(cin, pointAStr);
     cout << endl;
     cout << "Tocka B: ";
-    cin >> pointBStr;
+    //cin >> pointBStr;
+    getline(cin, pointBStr);
     cout << endl;
+
+    //DEFAULT VRIJEDNOSTI
+
+    if (pointAStr.empty() && pointBStr.empty())
+    {
+        pointAStr = "5,5";
+        pointBStr = "15,25";
+    }
 
     point inputPointA = pointParser(pointAStr);
     point inputPointB = pointParser(pointBStr);
