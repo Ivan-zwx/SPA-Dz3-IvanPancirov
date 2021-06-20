@@ -141,6 +141,11 @@
   <ItemGroup>
     <ClCompile Include="SPA-Dz3-IvanPancirov-Zadatak1.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GridBuilder.h" />
+    <ClInclude Include="PathCalculator.h" />
+    <ClInclude Include="UserInput.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
